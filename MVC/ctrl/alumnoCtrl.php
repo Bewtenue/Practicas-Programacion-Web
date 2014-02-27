@@ -13,6 +13,10 @@
 			$this->modelo=new alumnoMdl();
 		}
 		
+		/**
+		 * @return void
+		 * Execute the controller
+		 */
 		function ejecutar(){
 			//Validar la accion
 			if(isset($_GET['act'])){
@@ -42,7 +46,7 @@
 							//echo 'listando';
 							if($status){
 								include('vistas/materiasListas.php');
-								lista($status);
+								
 							}else{
 								include('vistas/error.php');
 							}

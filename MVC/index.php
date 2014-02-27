@@ -2,7 +2,9 @@
     //phpinfo();
 	/**
 	 * @@autor Jesús Alberto Ley Ayón
-	 * @sinc
+	 * @since 2014 February 27
+	 * this file define the controller to execute
+	 * according to the parameters in the url
 	 * URL /index.php?ctrl=alumno&accion=listar&grupo=1
 	 * 
 	 */
