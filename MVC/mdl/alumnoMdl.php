@@ -13,14 +13,19 @@
 		function alta(){
 			///Mandar a la base de datos
 			//si se pudo insertar
+			
 			return true;
 			//sino
-			return false;
+			//return false;
 		}
 		/**
 		 * @param int grupo
 		 */
 		function listar($grupo){
+			
+			
+		
+		
 			/**
 			 * Practice 6 : in this function you recieve a parameter called grupo wich have the number of the group
 			 * 				there are 3 arrays wich represents the groups
@@ -29,10 +34,10 @@
 			 * 
 			 */
 			 switch ($grupo) {
-				 case 1 :
+				 case "CC001" :
 					 $a = array ("Juanito","Fulanito","Manganito","Perenganito");
 					 //if(isset($_GET['ord'])){
-					 	if($_GET['ord']==1){
+					 	if($ordenamiento==1){
 					 		sort($a);
 							return $a;
 					 //	}		
@@ -40,23 +45,23 @@
 					 	return $a;
 					 
 					 break;
-				 case 2:
+				 case "i5846":
 					 $b = array ("Pedro","Lalo","Francisco","Ignacio");
-					 if(isset($_GET['ord'])){
-					 	if($_GET['ord']==1){
+					// if(isset($_GET['ord'])){
+					 	if($ordenamiento==1){
 					 		sort ($b);
 							return $b;
-						}
+					//	}
 					 }else
 					 	return $b;
 					 break;
-				 case 3:
+				 case "CC003":
 					 $c = array ("Javier","Ivan","Lucio","Irma","Victor");
-					 if (isset ($_GET['ord'])){
-					 	if($_GET['ord']==1){
+					 //if (isset ($_GET['ord'])){
+					 	if($ordenamiento==1){
 					 		sort($c);
 						 	return $c;
-					 	}
+					 	//}
 					 } 
 					 else
 					 	return $c;
