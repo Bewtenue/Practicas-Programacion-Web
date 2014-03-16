@@ -8,25 +8,29 @@
 	 * URL /index.php?ctrl=alumno&accion=listar&grupo=1
 	 * 
 	 */
-	 $control = $_POST['ctrl']='alumno';
-	 $accion = $_POST['act']='alta';
-	 $grupo = $_POST['grupo']='CC001';
-	 $ordenamiento = $_POST['ord']='1';
-	 $nombre = $_POST['nombre']='Jesus Alberto Ley Ayon';
-	 $correo = $_POST['correo']='jesus_ayon@hotmail.com';
-	 $codigo = $_POST['codigo']='206587305';
-	 $carrera = $_POST['carrera']='01';
-	 $url = $_POST['url']='https://bewtenue.net/index.php';
-	 $gituser = $_POST['gituser']='bewtenue123';
-	 $telefono = $_POST['telefono']='3313845969';
-	 $equipo = $_POST['equipo'] = 'J&J';
-	 
+	 $_POST['ctrl']='alumno';
+	 $_POST['act']='fechas';
+	 $_POST['grupo']='CC001';
+	 $_POST['ord']='1';
+	 $_POST['nombre']='Jesus Alberto Ley Ayon';
+	 $_POST['correo']='jesus_ayon@hotmail.com';
+	 $_POST['codigo']='206587305';
+	 $_POST['carrera']='01';
+	 $_POST['url']='https://bewtenue.net/index.php';
+	 $_POST['gituser']='bewtenue123';
+	 $_POST['telefono']='3313845969';
+	 $_POST['equipo'] = 'J&J';
+	 $_POST['fechaInicial'] = '18/03/2014';
+	 $_POST['fechaFinal'] = '29/05/2014';
+	 $_POST['dias'][0] = '2';
+	 $_POST['dias'][1] = '4';
+	  
 	 
 	 
 	 if(isset($_POST['ctrl'])){
 	 	switch ($_POST['ctrl']) {
 			 case 'alumno':
-				 echo 'Cargar el controlador Alumno<br />';
+				 
 				 require('ctrl/alumnoCtrl.php');
 				 $ctrl = new alumnoctrl();
 				 break;
