@@ -22,7 +22,7 @@
 		 * @param int grupo
 		 */
 		function listar($grupo){
-			
+			$ordenamiento=$_POST['ord'];
 			
 		
 		

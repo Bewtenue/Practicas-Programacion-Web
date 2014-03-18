@@ -13,7 +13,7 @@
 			require ('mdl/alumnoMdl.php');
 			$this->modelo=new alumnoMdl();
 		}
-		 
+		
 	 
 		/**
 		 * @return void
@@ -22,9 +22,12 @@
 		 
 		 
 		function ejecutar(){
+				
 			//Validar la accion
 			if(isset($_POST['act'])){
 				if(preg_match("/[a-zA-Z]*/",$_POST['act'])){
+					
+						
 			/**
 			 * 
 			 * Practica 7 Validating the parameters from _POST
@@ -80,21 +83,30 @@
 							
 							
 							break;
-							
+							/////////modificado para el uso de sesiones
 						case 'listar':
-							if(preg_match("/(C{2}|i)[0-9]{3,4}/",$_POST['grupo'])){
-								$status = $this ->modelo-> listar($_POST['grupo']);
-								//echo 'listando';
-								if($status){
-									include('vistas/materiasListas.php');
-									
+							session_start();
+							if(!$this->isLogged()){
+								$this->login('01','123');
+							if($this->isAlumno()){
+								if(preg_match("/(C{2}|i)[0-9]{3,4}/",$_POST['grupo'])){
+									$status = $this ->modelo-> listar($_POST['grupo']);
+									//echo 'listando';
+									if($status){
+										include('vistas/materiasListas.php');
+										$this->logout();
+									}else{
+										include('vistas/error.php');
+									}
 								}else{
-									include('vistas/error.php');
+									echo "Intente con otro grupo";
 								}
-							}else{
-								echo "Intente con otro grupo";
-							}
+							}	
 							
+							} else{
+								include('Vistas/errorSesion.php');
+								$this->logout();
+							}
 							break;
 							//Practica 8 Manejo de Fechas en PHP//////////
 						case 'fechas'://///recomendaciones de la maestra funciones "dates" "datecreate" "strtotime"
@@ -122,10 +134,14 @@
 								$this->muestraErrores();
 							}
 							break;
+						case 'logout':
+							$this->logout();
+						break;
 						default:
 							break;
 						
-					}
+						}
+					
 				}
 				else{
 					echo "Error de controlador y/o accion";
@@ -238,6 +254,38 @@
 				echo "Falto la informacion de la fecha Final </br>";
 			if(!isset($_POST['dias']))
 				echo "Faltaron los dias de clases </br>";
+		}
+		
+		/////Practica de uso de sessiones en PHP 18/03/2014
+		
+		public function login($id_user,$pass){
+			//se verifica que el usuario este en la base de datos
+			$_SESSION['user']= $_POST['user'];
+			$_SESSION['type']= $_POST['type'];
+			$_SESSION['username']=$_POST['username'];
+			
+			return true;
+		}
+		
+		public function logout(){
+			session_unset();
+			session_destroy();
+			setcookie(session_name(),'',time()-3600);
+		}
+		
+		public function isAlumno(){
+			if(isset($_SESSION['user']) && isset($_SESSION['user'])=='alumno'){
+				return true;
+			}
+			else return false;
+		}
+		
+		public function isLogged(){
+			if(isset($_SESSION['user'])&& isset($_SESSION['type'])&& isset($_SESSION['username'])){
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}
 ?>

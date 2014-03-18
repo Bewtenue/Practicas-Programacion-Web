@@ -9,7 +9,7 @@
 	 * 
 	 */
 	 $_POST['ctrl']='alumno';
-	 $_POST['act']='fechas';
+	 $_POST['act']='listar';
 	 $_POST['grupo']='CC001';
 	 $_POST['ord']='1';
 	 $_POST['nombre']='Jesus Alberto Ley Ayon';
@@ -24,8 +24,10 @@
 	 $_POST['fechaFinal'] = '29/05/2014';
 	 $_POST['dias'][0] = '2';
 	 $_POST['dias'][1] = '4';
-	  
-	 
+	 $_POST['user']='alumno';
+	 $_POST['type']='maestro';
+	 $_POST['username']='jesus';
+	 $_POST['pass']='123';
 	 
 	 if(isset($_POST['ctrl'])){
 	 	switch ($_POST['ctrl']) {
@@ -34,7 +36,10 @@
 				 require('ctrl/alumnoCtrl.php');
 				 $ctrl = new alumnoctrl();
 				 break;
-			 
+			 case 'practnum':
+				 requiere('ctrl/numeroCtrl.php');
+				 $ctrl = new numeroctrl();
+				 break;
 			 default:
 				 
 				 break;
